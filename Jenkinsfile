@@ -4,11 +4,7 @@ pipeline {
         JAVA_HOME = "/opt/jdk8"
     }
     stages {
-        stage('checkout'){
-            steps{
-            checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/jglick/simple-maven-project-with-tests.git']]])
-        }
-        }
+        
         stage('Build') {
             when {
                 branch master
