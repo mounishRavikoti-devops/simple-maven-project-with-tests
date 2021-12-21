@@ -1,26 +1,32 @@
 pipeline {
-  agent {
-    kubernetes {
-      containerTemplate {
-        name 'maven'
-        image 'maven'
-        command 'sleep'
-        args 'infinity'
-      }
+    agent any 
+    environment {
+        JAVA_HOME = "/opt/jdk8"
     }
-  }
-  stages {
-    stage('Run') {
-      steps {
-        container('maven') {
-          sh 'mvn -B -ntp -Dmaven.test.failure.ignore verify'
+    stages {
+        
+        stage('Build') {
+            when {
+                branch master
+            }
+            steps {
+                sh 'mvn -B -DskipTests clean package'
+            }
         }
-      }
+        stage('Test') {
+            steps {
+                sh 'mvn test'
+            }
+            post {
+                always {
+                    junit testResults:'target/surefire-reports/*.xml', skipPublishingChecks: true
+                }
+            }
+        }
+       /* stage('Deliver') {
+            steps {
+                sh './jenkins/scripts/deliver.sh'
+            }
+        } */
     }
-  }
-  post {
-    success {
-      junit '**/target/surefire-reports/TEST-*.xml'
-    }
-  }
 }
