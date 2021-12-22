@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment{
-        JAVA_HOME = "/opt/jdk8/"
+        JAVA_HOME = 
     }
        stages {
         stage('Build') {
