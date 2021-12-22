@@ -10,7 +10,7 @@ pipeline {
                 branch master
             }
             steps {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests=true clean package'
             }
         }
         stage('Test') {
