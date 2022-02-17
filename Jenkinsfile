@@ -12,7 +12,7 @@ pipeline {
        stages {
         stage('Build') {
             steps {
-                sh '/opt/maven3.8.4/bin/mvn -B -DskipTests=true clean package'
+                sh 'mvn -B -DskipTests=true clean package'
             }
         }
         stage('Test') {
