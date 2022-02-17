@@ -3,6 +3,11 @@ pipeline {
     environment{
         JAVA_HOME = "/opt/java8/"
     }
+    
+    tools {
+      maven 'maven2'
+    }
+
    
        stages {
         stage('Build') {
