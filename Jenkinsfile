@@ -1,1 +1,1 @@
-#####
+!usr/bin/groovy
