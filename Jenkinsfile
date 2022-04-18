@@ -1,1 +1,1 @@
-!usr/bin/groovy
+#!/usr/bin/env groovy
