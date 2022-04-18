@@ -4,7 +4,7 @@ node {
     stage('Stage 1') {
         echo 'hello'
     }
-    stage(codecheckout){
+    stage('codecheckout'){
     checkout([$class: 'GitSCM', 
               branches: [[name: '*/master']],
               extensions: [],
